@@ -28,10 +28,11 @@ def run_dna_rna_tools(*args):
 
 
 def filter_fastq(seqs, gc_bounds, length_bounds, quality_threshold):
-    filtrated_sequences = []
+    filtrated_sequences = dict()
     for name, (sequence, quality) in seqs.items():
         if (gc_filter(sequence, bounds(gc_bounds)) and
                 length_filter(sequence, bounds(length_bounds)) and
                 quality_filter(quality, quality_threshold)):
-            filtrated_sequences.append(sequence)
+            filtrated_sequences[name]=(sequence,quality)
     return filtrated_sequences
+

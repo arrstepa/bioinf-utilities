@@ -3,6 +3,14 @@ from modules.dna_rna_tools_module import *
 
 
 def run_dna_rna_tools(*args):
+    """
+    A set of tools for working with DNA/RNA sequences
+
+    Arguments:
+    *args: str
+
+    Returns str/bool/list
+    """
     procedure = args[-1]
     sequences = list(args[:-1])
     sequences_only_na = drop_not_na(list(args[:-1]))
@@ -28,6 +36,17 @@ def run_dna_rna_tools(*args):
 
 
 def filter_fastq(seqs, gc_bounds, length_bounds, quality_threshold):
+    """
+    A set of tools for filtrating fastq files
+
+    Arguments:
+    seqs: dict
+    gc_bound: int/tuple
+    length_bounds: int/tuple
+    quality_threshold: int
+
+    Returns dict
+    """
     filtrated_sequences = dict()
     for name, (sequence, quality) in seqs.items():
         if (gc_filter(sequence, bounds(gc_bounds)) and

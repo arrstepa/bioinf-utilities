@@ -1,3 +1,7 @@
+from modules.filter_fastq_module import *
+from modules.dna_rna_tools_module import *
+
+
 def run_dna_rna_tools(*args):
     procedure = args[-1]
     sequences = list(args[:-1])

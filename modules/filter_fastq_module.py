@@ -10,7 +10,7 @@ def length_filter(seq, bounds=(0, 2**32)):
     return bounds[0] <= len(seq) <= bounds[1]
 
 
-def quality_decode(quality):
+def quality_decode(quality=0):
     return [ord(x) - 33 for x in quality]
 
 

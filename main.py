@@ -35,7 +35,7 @@ def run_dna_rna_tools(*args):
         print(results)
 
 
-def filter_fastq(seqs, gc_bounds, length_bounds, quality_threshold):
+def filter_fastq(input_fastq, gc_bounds, length_bounds, quality_threshold):
     """
     A set of tools for filtrating fastq files
 
@@ -47,6 +47,7 @@ def filter_fastq(seqs, gc_bounds, length_bounds, quality_threshold):
 
     Returns dict
     """
+    seqs = file_to_dict(input_fastq)
     filtrated_sequences = dict()
     for name, (sequence, quality) in seqs.items():
         if (gc_filter(sequence, bounds(gc_bounds)) and

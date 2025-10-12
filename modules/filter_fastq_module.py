@@ -1,3 +1,24 @@
+from collections import defaultdict
+
+
+def file_to_dict(filename):
+    output_fastq = dict()
+    with open(filename) as file:
+        while True:
+            name = file.readline().strip()
+            if not name:
+                break
+            sequence = file.readline().strip()
+            file.readline()
+            quality = file.readline().strip()
+            reads[name] = (sequence, quality)
+    return output_fastq
+
+
+def filtrated_fastq_to_file(filtrated_sequences):
+    pass
+
+
 def gc_perc(seq):
     """
     Computes the percentage of G and C in the sequence

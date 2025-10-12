@@ -1,8 +1,7 @@
-from collections import defaultdict
-
+import os
 
 def file_to_dict(filename):
-    output_fastq = dict()
+    reads = dict()
     with open(filename) as file:
         while True:
             name = file.readline().strip()
@@ -12,11 +11,15 @@ def file_to_dict(filename):
             file.readline()
             quality = file.readline().strip()
             reads[name] = (sequence, quality)
-    return output_fastq
+    return reads
 
 
-def filtrated_fastq_to_file(filtrated_sequences):
-    pass
+def filtrated_fastq_to_file(filtrated_sequences, output_fastq):
+    os.makedirs('filtered', exist_ok=True)
+    file_path = os.path.join(output_fastq, 'filtered', 'output_fastq.txt')
+    with open(file_path, 'a') as file:
+        for name, sequence in filtrated_sequences.items():
+            file.write(f"{name}\n{sequence[0]}\n{name.replace('@', '+')}\n{sequence[1]}")
 
 
 def gc_perc(seq):

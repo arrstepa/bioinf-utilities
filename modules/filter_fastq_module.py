@@ -1,6 +1,15 @@
 import os
 
 def file_to_dict(filename):
+    """
+    Reads file and return dictionary with names as keys
+    and tuple of sequence with quality string as value
+
+    Arguments:
+    filename: str
+
+    Returns dict
+    """
     reads = dict()
     with open(filename) as file:
         while True:
@@ -15,6 +24,15 @@ def file_to_dict(filename):
 
 
 def filtrated_fastq_to_file(filtrated_sequences, output_fastq):
+    """
+    Creates an output file in directory /filtered with filtrated sequences
+
+    Arguments:
+    filtrated_sequences: dict
+    output_fastq: str
+
+    Returns str
+    """
     os.makedirs('filtered', exist_ok=True)
     file_path = os.path.join(output_fastq, 'filtered', 'output_fastq.txt')
     with open(file_path, 'a') as file:

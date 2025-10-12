@@ -49,7 +49,10 @@ def gc_perc(seq):
 
     Returns int
     """
-    return ((seq.count('G') + seq.count('C')) / len(seq)) * 100
+    if len(seq) == 0:
+        return 0
+    else:
+        return ((seq.count('G') + seq.count('C')) / len(seq)) * 100
 
 
 def gc_filter(seq, bounds=(0,100)):

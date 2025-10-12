@@ -41,7 +41,7 @@ def filter_fastq(input_fastq, gc_bounds, length_bounds, quality_threshold):
     A set of tools for filtrating fastq files
 
     Arguments:
-    seqs: dict
+    input_fastq: str
     gc_bound: int/tuple
     length_bounds: int/tuple
     quality_threshold: int

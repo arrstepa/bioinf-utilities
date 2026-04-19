@@ -11,11 +11,13 @@ bioinf-utilities is a toolkit for basic processing of DNA and RNA sequences and 
 	- GC content analysis: functions for calculating and filtering based on GC content
 	- Checks to ensure sequence length adheres to defined limits
 	- Decodind and filtering based on quality scores
+- fasta files procession
+	- package allows user to convert multiline fasta files into oneline format
 
 ## Where to Get It
 The source code is currently hosted on GitHub at: https://github.com/arrstepa/bioinf-utilities.git
 
 
 
-#Authors:
+## Authors:
 Arina Stepanova

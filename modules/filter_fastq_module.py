@@ -1,3 +1,45 @@
+import os
+
+def file_to_dict(filename):
+    """
+    Reads file and return dictionary with names as keys
+    and tuple of sequence with quality string as value
+
+    Arguments:
+    filename: str
+
+    Returns dict
+    """
+    reads = dict()
+    with open(filename) as file:
+        while True:
+            name = file.readline().strip()
+            if not name:
+                break
+            sequence = file.readline().strip()
+            file.readline()
+            quality = file.readline().strip()
+            reads[name] = (sequence, quality)
+    return reads
+
+
+def filtrated_fastq_to_file(filtrated_sequences, output_fastq):
+    """
+    Creates an output file in directory /filtered with filtrated sequences
+
+    Arguments:
+    filtrated_sequences: dict
+    output_fastq: str
+
+    Returns str
+    """
+    os.makedirs('filtered', exist_ok=True)
+    file_path = os.path.join(output_fastq, 'filtered', 'output_fastq.txt')
+    with open(file_path, 'a') as file:
+        for name, sequence in filtrated_sequences.items():
+            file.write(f"{name}\n{sequence[0]}\n{name.replace('@', '+')}\n{sequence[1]}")
+
+
 def gc_perc(seq):
     """
     Computes the percentage of G and C in the sequence
@@ -7,7 +49,10 @@ def gc_perc(seq):
 
     Returns int
     """
-    return ((seq.count('G') + seq.count('C')) / len(seq)) * 100
+    if len(seq) == 0:
+        return 0
+    else:
+        return ((seq.count('G') + seq.count('C')) / len(seq)) * 100
 
 
 def gc_filter(seq, bounds=(0,100)):
